@@ -25,4 +25,28 @@ class LogNode(Node):
         print(kwds["dataIn"])
         return
 
+
 fclib.registerNodeType(LogNode, [('Logging', )])
+
+
+class NormalVectorNode(Node):
+    """
+    Creates Normal Vector
+    """
+    nodeName = "NormalVector"
+
+    def __init__(self, name):
+        terminals = {
+            'NormalX': dict(io='in'),
+            'NormalZ': dict(io='in'),
+            'VectorX': dict(io='out'),
+            'VectorY': dict(io='out'),
+        }
+
+        Node.__init__(self, name, terminals=terminals)
+
+    def process(self, **kwds):
+        return kwds
+
+
+fclib.registerNodeType(LogNode, [('Data', )])

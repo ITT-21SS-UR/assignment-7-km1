@@ -25,12 +25,15 @@ if __name__ == '__main__':
     pwX = pg.PlotWidget()
     pwY = pg.PlotWidget()
     pwZ = pg.PlotWidget()
+    pwNormal = pg.PlotWidget()
     layout.addWidget(pwX, 0, 1)
     layout.addWidget(pwY, 0, 2)
     layout.addWidget(pwZ, 1, 1)
-    pwX.setYRange(0, 2)
-    pwY.setYRange(0, 2)
-    pwZ.setYRange(0, 2)
+    layout.addWidget(pwNormal, 1, 2)
+    pwX.setYRange(0, 4)
+    pwY.setYRange(0, 4)
+    pwZ.setYRange(0, 4)
+    pwNormal.setYRange(0, 1)
 
     # setup flowchart nodes
     dippidNode = fc.createNode("DIPPID", pos=(0, 0))
@@ -43,13 +46,13 @@ if __name__ == '__main__':
     bufferNodeZ = fc.createNode("Buffer", pos=(150, 100))
     pwNodeZ = fc.createNode('PlotWidget', pos=(300, 100))
     pwNodeZ.setPlot(pwZ)
+    normalVectorNode = fc.createNode("NormalVector", pos=(150, 100))
+    normalVectorNode.setPlot(pwNormal)
     logNode = fc.createNode("Log", pos=(450, 0))
 
-
     # setup node connections
-
+    # add connections for normal vector node
     fc.connectTerminals(bufferNodeX['dataOut'], logNode['dataIn'])
-
     fc.connectTerminals(dippidNode['accelX'], bufferNodeX['dataIn'])
     fc.connectTerminals(dippidNode['accelY'], bufferNodeY['dataIn'])
     fc.connectTerminals(dippidNode['accelZ'], bufferNodeZ['dataIn'])

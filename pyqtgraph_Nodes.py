@@ -1,3 +1,7 @@
+"""
+Code written by Kay Brinkmann and reviewed by Marco Beetz
+"""
+
 from pyqtgraph.flowchart import Flowchart, Node
 from pyqtgraph.flowchart.library.common import CtrlNode
 import pyqtgraph.flowchart.library as fclib
@@ -10,7 +14,7 @@ import sys
 
 class LogNode(Node):
     """
-    Logs nodes input to stdout
+    Lognode that prints output of connect node to stdout
     """
     nodeName = "Log"
 
@@ -41,13 +45,11 @@ class NormalVectorNode(Node):
             'inputAccel2': dict(io='in'),
             'outVector': dict(io='out')
         }
+        self._vector = np.array([])
         Node.__init__(self, name, terminals=terminals)
 
     def process(self, **kwds):
-        print("processed")
         self._vector = np.array([[0, 0], [kwds['inputAccel1'][0], kwds['inputAccel2'][0]]])
-        print("processed2")
-        print("Vector:", self._vector)
         return {'outVector': self._vector}
 
 

@@ -5,7 +5,7 @@ import pyqtgraph.flowchart.library as fclib
 from pyqtgraph.Qt import QtGui, QtCore
 import pyqtgraph as pg
 from DIPPID_pyqtnode import BufferNode, DIPPIDNode
-from pyqtgraph_Nodes import  LogNode
+from pyqtgraph_Nodes import  LogNode, NormalVectorNode
 
 
 if __name__ == '__main__':
@@ -33,7 +33,8 @@ if __name__ == '__main__':
     pwX.setYRange(0, 4)
     pwY.setYRange(0, 4)
     pwZ.setYRange(0, 4)
-    pwNormal.setYRange(0, 1)
+    pwNormal.setYRange(-5, 5)
+    pwNormal.setXRange(-5, 5)
 
     # setup flowchart nodes
     dippidNode = fc.createNode("DIPPID", pos=(0, 0))
@@ -57,13 +58,12 @@ if __name__ == '__main__':
     fc.connectTerminals(dippidNode['accelX'], bufferNodeX['dataIn'])
     fc.connectTerminals(dippidNode['accelY'], bufferNodeY['dataIn'])
     fc.connectTerminals(dippidNode['accelZ'], bufferNodeZ['dataIn'])
-    fc.connectTerminals(bufferNodeX['dataOut'], normalVectorNode['normalX'])
-    fc.connectTerminals(bufferNodeZ['dataOut'], normalVectorNode['normalZ'])
-    fc.connectTerminals(normalVectorNode['outVector'], pwNodeX['In'])
+    fc.connectTerminals(dippidNode['accelX'], normalVectorNode['inputAccel1'])
+    fc.connectTerminals(dippidNode['accelZ'], normalVectorNode['inputAccel2'])
+    fc.connectTerminals(normalVectorNode['outVector'], pwNodeNormal['In'])
     fc.connectTerminals(bufferNodeX['dataOut'], pwNodeX['In'])
     fc.connectTerminals(bufferNodeY['dataOut'], pwNodeY['In'])
     fc.connectTerminals(bufferNodeZ['dataOut'], pwNodeZ['In'])
 
     win.show()
     app.exec_()
-    a = 0

@@ -18,7 +18,6 @@ class LogNode(Node):
         terminals = {
             'dataIn': dict(io='in'),
         }
-
         Node.__init__(self, name, terminals=terminals)
 
     def process(self, **kwds):
@@ -31,21 +30,25 @@ fclib.registerNodeType(LogNode, [('Logging', )])
 
 class NormalVectorNode(Node):
     """
-    Creates Normal Vector
+    Creates Normal Vector for two input accels.
+    Overall Structure based on the buffer node from DIPPID_pyqtnode.py
     """
     nodeName = "NormalVector"
 
     def __init__(self, name):
         terminals = {
-            'normalX': dict(io='in'),
-            'normalZ': dict(io='in'),
+            'inputAccel1': dict(io='in'),
+            'inputAccel2': dict(io='in'),
             'outVector': dict(io='out')
         }
-
         Node.__init__(self, name, terminals=terminals)
 
     def process(self, **kwds):
-        return [(0, 0), (1.0, 1.0)]
+        print("processed")
+        self._vector = np.array([[0, 0], [kwds['inputAccel1'][0], kwds['inputAccel2'][0]]])
+        print("processed2")
+        print("Vector:", self._vector)
+        return {'outVector': self._vector}
 
 
 fclib.registerNodeType(NormalVectorNode, [('Data', )])

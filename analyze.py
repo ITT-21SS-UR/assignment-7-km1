@@ -5,8 +5,7 @@ import pyqtgraph.flowchart.library as fclib
 from pyqtgraph.Qt import QtGui, QtCore
 import pyqtgraph as pg
 from DIPPID_pyqtnode import BufferNode, DIPPIDNode
-from pyqtgraph_Nodes import  LogNode, NormalVectorNode
-
+from pyqtgraph_Nodes import LogNode, NormalVectorNode
 
 if __name__ == '__main__':
     print("la")

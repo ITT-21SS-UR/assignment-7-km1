@@ -46,8 +46,9 @@ if __name__ == '__main__':
     bufferNodeZ = fc.createNode("Buffer", pos=(150, 100))
     pwNodeZ = fc.createNode('PlotWidget', pos=(300, 100))
     pwNodeZ.setPlot(pwZ)
+    pwNodeNormal = fc.createNode('PlotWidget', pos=(300, 100))
+    pwNodeNormal.setPlot(pwNormal)
     normalVectorNode = fc.createNode("NormalVector", pos=(150, 100))
-    normalVectorNode.setPlot(pwNormal)
     logNode = fc.createNode("Log", pos=(450, 0))
 
     # setup node connections
@@ -56,10 +57,13 @@ if __name__ == '__main__':
     fc.connectTerminals(dippidNode['accelX'], bufferNodeX['dataIn'])
     fc.connectTerminals(dippidNode['accelY'], bufferNodeY['dataIn'])
     fc.connectTerminals(dippidNode['accelZ'], bufferNodeZ['dataIn'])
+    fc.connectTerminals(bufferNodeX['dataOut'], normalVectorNode['normalX'])
+    fc.connectTerminals(bufferNodeZ['dataOut'], normalVectorNode['normalZ'])
+    fc.connectTerminals(normalVectorNode['outVector'], pwNodeX['In'])
     fc.connectTerminals(bufferNodeX['dataOut'], pwNodeX['In'])
     fc.connectTerminals(bufferNodeY['dataOut'], pwNodeY['In'])
     fc.connectTerminals(bufferNodeZ['dataOut'], pwNodeZ['In'])
 
-    #fc.connectTerminals(bufferNode['dataOut'], pw1Node['In'])
     win.show()
     app.exec_()
+    a = 0

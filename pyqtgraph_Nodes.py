@@ -37,16 +37,15 @@ class NormalVectorNode(Node):
 
     def __init__(self, name):
         terminals = {
-            'NormalX': dict(io='in'),
-            'NormalZ': dict(io='in'),
-            'VectorX': dict(io='out'),
-            'VectorY': dict(io='out'),
+            'normalX': dict(io='in'),
+            'normalZ': dict(io='in'),
+            'outVector': dict(io='out')
         }
 
         Node.__init__(self, name, terminals=terminals)
 
     def process(self, **kwds):
-        return kwds
+        return [(0, 0), (1.0, 1.0)]
 
 
-fclib.registerNodeType(LogNode, [('Data', )])
+fclib.registerNodeType(NormalVectorNode, [('Data', )])

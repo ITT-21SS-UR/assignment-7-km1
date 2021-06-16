@@ -1,0 +1,2 @@
+1) Its defining property is having   normal/ gaussian distributed  probability density function.
+2) A low pass filter reduces the amplitude of high frequency signals while allowing  low frequency filters to pass unimpeded

@@ -1,3 +1,3 @@
 1) Its defining property is having   normal/ gaussian distributed  probability density function.
 2) A low pass filter reduces the amplitude of high frequency signals while allowing  low frequency filters to pass unimpeded
-3) The moving average filter takes an average value from input signals. Thus it is not sensitive to high frequency signals with a high amplitude. Therefore the moving average filter is a low pass filter.
+3) The moving average filter takes an average value "from a number of points". Then it compares it with an input signal. If the input signal has a higher frequency resulting in a higher amplitude or a lower frequency with a lower amplitude the moving average filter can be a high pass filter or a low pass filter depending on the input. 

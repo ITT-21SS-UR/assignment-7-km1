@@ -86,29 +86,34 @@ class GameWindow(QMainWindow):
 # Got the idea to use a sequence of single shots from the link above
 # Single Shots are not elegant but very easy to use and suitable for our problem
 # More easy than threading, time.sleep() didn't work sufficiently
+# We added some error handling to provide the script from crashing
 # https://programtalk.com/python-examples/PyQt5.QtCore.QTimer.singleShot/
     def start_clicked(self):
-        self.timer.singleShot(1000, self.move_to_random)
-        self.timer.singleShot(2000, self.get_sensor_data_from_random)
-        self.timer.singleShot(3000, self.move_to_anchor)
-        self.timer.singleShot(4000, self.get_sensor_data_from_anchor)
-        self.timer.singleShot(5000, self.move_to_random)
-        self.timer.singleShot(6000, self.get_sensor_data_from_random)
-        self.timer.singleShot(7000, self.move_to_anchor)
-        self.timer.singleShot(8000, self.get_sensor_data_from_anchor)
-        self.timer.singleShot(9000, self.move_to_random)
-        self.timer.singleShot(10000, self.get_sensor_data_from_random)
-        self.timer.singleShot(11000, self.move_to_anchor)
-        self.timer.singleShot(12000, self.get_sensor_data_from_anchor)
-        self.timer.singleShot(13000, self.move_to_random)
-        self.timer.singleShot(14000, self.get_sensor_data_from_random)
-        self.timer.singleShot(15000, self.move_to_anchor)
-        self.timer.singleShot(16000, self.get_sensor_data_from_anchor)
-        self.timer.singleShot(17000, self.move_to_random)
-        self.timer.singleShot(18000, self.get_sensor_data_from_random)
-        self.timer.singleShot(19000, self.move_to_anchor)
-        self.timer.singleShot(20000, self.get_sensor_data_from_anchor)
-        self.timer.singleShot(20500, self.show_final_text)
+        security_check = sensor.get_capabilities()
+        if not security_check:
+            print("please start the DIPPID app and enable the send data function !")
+        else:
+            self.timer.singleShot(1000, self.move_to_random)
+            self.timer.singleShot(2000, self.get_sensor_data_from_random)
+            self.timer.singleShot(3000, self.move_to_anchor)
+            self.timer.singleShot(4000, self.get_sensor_data_from_anchor)
+            self.timer.singleShot(5000, self.move_to_random)
+            self.timer.singleShot(6000, self.get_sensor_data_from_random)
+            self.timer.singleShot(7000, self.move_to_anchor)
+            self.timer.singleShot(8000, self.get_sensor_data_from_anchor)
+            self.timer.singleShot(9000, self.move_to_random)
+            self.timer.singleShot(10000, self.get_sensor_data_from_random)
+            self.timer.singleShot(11000, self.move_to_anchor)
+            self.timer.singleShot(12000, self.get_sensor_data_from_anchor)
+            self.timer.singleShot(13000, self.move_to_random)
+            self.timer.singleShot(14000, self.get_sensor_data_from_random)
+            self.timer.singleShot(15000, self.move_to_anchor)
+            self.timer.singleShot(16000, self.get_sensor_data_from_anchor)
+            self.timer.singleShot(17000, self.move_to_random)
+            self.timer.singleShot(18000, self.get_sensor_data_from_random)
+            self.timer.singleShot(19000, self.move_to_anchor)
+            self.timer.singleShot(20000, self.get_sensor_data_from_anchor)
+            self.timer.singleShot(20500, self.show_final_text)
 
 # Just setting the final text
     def show_final_text(self):

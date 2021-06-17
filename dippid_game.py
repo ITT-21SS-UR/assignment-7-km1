@@ -144,7 +144,7 @@ class GameWindow(QMainWindow):
     def get_sensor_data_from_random(self):
         if(self.current_target == "left"):
             self.current_sensor_data = sensor.get_value('accelerometer')['x']
-            if(self.current_sensor_data >= 0.8):
+            if(self.current_sensor_data >= 0.7):
                 self.score_counter.setText("you made it!")
             else:
                 self.score_counter.setText("try it again!")
@@ -153,21 +153,21 @@ class GameWindow(QMainWindow):
 # Could also use a switch case or something else but it works fine
         if(self.current_target == "right"):
             self.current_sensor_data = sensor.get_value('accelerometer')['x']
-            if (self.current_sensor_data <= -0.8):
+            if (self.current_sensor_data <= -0.7):
                 self.score_counter.setText("you made it!")
             else:
                 self.score_counter.setText("try again!")
 
         if(self.current_target == "up"):
             self.current_sensor_data = sensor.get_value('accelerometer')['z']
-            if (self.current_sensor_data >= 0.8):
+            if (self.current_sensor_data >= 0.7):
                 self.score_counter.setText("you made it!")
             else:
                 self.score_counter.setText("try again!")
 
         if(self.current_target == "down"):
             self.current_sensor_data = sensor.get_value('accelerometer')['z']
-            if(self.current_sensor_data <= -0.8):
+            if(self.current_sensor_data <= -0.7):
                 self.score_counter.setText("you made it!")
             else:
                 self.score_counter.setText("try again!")
@@ -176,7 +176,7 @@ class GameWindow(QMainWindow):
 # In front of you (z and x being irrelevant)
     def get_sensor_data_from_anchor(self):
         self.current_sensor_data = sensor.get_value('accelerometer')['y']
-        if(self.current_sensor_data >= 0.8):
+        if(self.current_sensor_data >= 0.7):
             self.score_counter.setText("stay ready...")
         else:
             print("oh...to slow!")
